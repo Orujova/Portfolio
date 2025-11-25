@@ -1,7 +1,8 @@
 'use client';
 
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink, Github, Star, Eye } from 'lucide-react';
 import { translations, Language } from '@/lib/translations';
+import { useState, useEffect, useRef } from 'react';
 
 interface ProjectsProps {
   language: Language;
@@ -10,6 +11,27 @@ interface ProjectsProps {
 
 export default function Projects({ language, darkMode }: ProjectsProps) {
   const t = translations[language];
+  const [isVisible, setIsVisible] = useState(false);
+  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
+  const [filter, setFilter] = useState('all');
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   const projects = [
     {
@@ -19,7 +41,9 @@ export default function Projects({ language, darkMode }: ProjectsProps) {
       tech: ['Next.js', 'TypeScript', 'Tailwind CSS', 'PostgreSQL', 'Stripe'],
       github: 'https://github.com/Orujova',
       live: '#',
-      gradient: 'from-purple-500 to-pink-500'
+      gradient: 'from-purple-500 to-pink-500',
+      category: 'fullstack',
+      featured: true
     },
     {
       title: 'AI Task Management',
@@ -28,7 +52,9 @@ export default function Projects({ language, darkMode }: ProjectsProps) {
       tech: ['React', 'Node.js', 'MongoDB', 'Socket.io', 'OpenAI API'],
       github: 'https://github.com/Orujova',
       live: '#',
-      gradient: 'from-blue-500 to-cyan-500'
+      gradient: 'from-blue-500 to-cyan-500',
+      category: 'fullstack',
+      featured: true
     },
     {
       title: 'Portfolio Builder',
@@ -37,7 +63,9 @@ export default function Projects({ language, darkMode }: ProjectsProps) {
       tech: ['React', 'Redux', 'Tailwind CSS', 'Firebase'],
       github: 'https://github.com/Orujova',
       live: '#',
-      gradient: 'from-orange-500 to-red-500'
+      gradient: 'from-orange-500 to-red-500',
+      category: 'frontend',
+      featured: false
     },
     {
       title: 'Social Media Dashboard',
@@ -46,7 +74,9 @@ export default function Projects({ language, darkMode }: ProjectsProps) {
       tech: ['Next.js', 'TypeScript', 'Chart.js', 'API Integration'],
       github: 'https://github.com/Orujova',
       live: '#',
-      gradient: 'from-green-500 to-emerald-500'
+      gradient: 'from-green-500 to-emerald-500',
+      category: 'frontend',
+      featured: false
     },
     {
       title: 'Weather Forecast App',
@@ -55,7 +85,9 @@ export default function Projects({ language, darkMode }: ProjectsProps) {
       tech: ['React', 'TypeScript', 'OpenWeather API', 'Tailwind CSS'],
       github: 'https://github.com/Orujova',
       live: '#',
-      gradient: 'from-sky-500 to-blue-500'
+      gradient: 'from-sky-500 to-blue-500',
+      category: 'frontend',
+      featured: false
     },
     {
       title: 'Blog Platform',
@@ -64,35 +96,137 @@ export default function Projects({ language, darkMode }: ProjectsProps) {
       tech: ['Next.js', 'Django', 'PostgreSQL', 'AWS S3'],
       github: 'https://github.com/Orujova',
       live: '#',
-      gradient: 'from-violet-500 to-purple-500'
+      gradient: 'from-violet-500 to-purple-500',
+      category: 'fullstack',
+      featured: false
     }
   ];
 
+  const filters = [
+    { id: 'all', label: 'All Projects', icon: '🎯' },
+    { id: 'featured', label: 'Featured', icon: '⭐' },
+    { id: 'fullstack', label: 'Full Stack', icon: '💻' },
+    { id: 'frontend', label: 'Frontend', icon: '🎨' }
+  ];
+
+  const filteredProjects = projects.filter(project => {
+    if (filter === 'all') return true;
+    if (filter === 'featured') return project.featured;
+    return project.category === filter;
+  });
+
   return (
-    <section id="projects" className="min-h-screen flex items-center justify-center px-4 py-20">
+    <section 
+      ref={sectionRef}
+      id="projects" 
+      className="min-h-screen flex items-center justify-center px-4 py-20"
+    >
       <div className="max-w-7xl mx-auto w-full">
-        <h2 className="text-4xl sm:text-5xl font-bold text-center mb-12 bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
+        <h2 className={`text-4xl sm:text-5xl font-bold text-center mb-4 ${
+          isVisible ? 'animate-fadeInDown' : 'opacity-0'
+        } bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent`}>
           {t.projects.title}
         </h2>
 
+        <p className={`text-center mb-8 ${
+          darkMode ? 'text-gray-400' : 'text-gray-600'
+        } ${isVisible ? 'animate-fadeInUp delay-200' : 'opacity-0'}`}>
+          Some of my recent work and side projects
+        </p>
+
+        {/* Filter buttons */}
+        <div className={`flex flex-wrap justify-center gap-4 mb-12 ${
+          isVisible ? 'animate-fadeInUp delay-300' : 'opacity-0'
+        }`}>
+          {filters.map((filterItem, index) => (
+            <button
+              key={filterItem.id}
+              onClick={() => setFilter(filterItem.id)}
+              className={`px-6 py-2 rounded-full font-medium transition-all duration-300 flex items-center gap-2 ${
+                filter === filterItem.id
+                  ? 'bg-gradient-to-r from-purple-500 to-blue-500 text-white scale-110 shadow-lg'
+                  : darkMode
+                    ? 'bg-white/5 hover:bg-white/10 border border-white/10'
+                    : 'bg-gray-100 hover:bg-gray-200 border border-gray-200'
+              }`}
+              style={{ animationDelay: `${index * 50}ms` }}
+            >
+              <span>{filterItem.icon}</span>
+              {filterItem.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Projects grid with stagger animation */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
+          {filteredProjects.map((project, index) => (
             <div
               key={index}
-              className="group dark:bg-white/5 bg-gray-50 rounded-2xl overflow-hidden border dark:border-white/10 border-gray-200 hover:scale-105 transition-all duration-300"
+              onMouseEnter={() => setHoveredProject(index)}
+              onMouseLeave={() => setHoveredProject(null)}
+              className={`group relative rounded-2xl overflow-hidden border transition-all duration-500 card-hover ${
+                darkMode 
+                  ? 'bg-white/5 border-white/10 hover:border-purple-500/50' 
+                  : 'bg-gray-50 border-gray-200 hover:border-purple-500/50'
+              } ${
+                isVisible ? 'animate-fadeInUp' : 'opacity-0'
+              } hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20`}
+              style={{ animationDelay: `${400 + index * 100}ms` }}
             >
-              {/* Project Image/Icon */}
-              <div className={`h-48 bg-gradient-to-br ${project.gradient} flex items-center justify-center text-6xl relative overflow-hidden`}>
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
-                <span className="relative z-10 group-hover:scale-110 transition-transform">
+              {/* Featured badge */}
+              {project.featured && (
+                <div className="absolute top-4 right-4 z-20 px-3 py-1 rounded-full bg-gradient-to-r from-yellow-500 to-orange-500 text-xs font-bold flex items-center gap-1 animate-pulse-scale">
+                  <Star className="w-3 h-3" />
+                  Featured
+                </div>
+              )}
+
+              {/* Project Image/Icon with parallax effect */}
+              <div className={`relative h-48 bg-gradient-to-br ${project.gradient} flex items-center justify-center text-6xl overflow-hidden`}>
+                <div className={`absolute inset-0 bg-black/20 transition-all duration-500 ${
+                  hoveredProject === index ? 'bg-black/10' : ''
+                }`}></div>
+                
+                <span className={`relative z-10 transition-all duration-500 ${
+                  hoveredProject === index ? 'scale-125 rotate-12' : ''
+                }`}>
                   {project.image}
                 </span>
+
+                {/* Hover overlay */}
+                {hoveredProject === index && (
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-center justify-center gap-4 animate-fadeInUp">
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all hover:scale-110"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <Github className="w-5 h-5" />
+                    </a>
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all hover:scale-110"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <Eye className="w-5 h-5" />
+                    </a>
+                  </div>
+                )}
               </div>
 
               {/* Project Info */}
               <div className="p-6 space-y-4">
-                <h3 className="text-xl font-semibold">{project.title}</h3>
-                <p className="text-sm dark:text-gray-400 text-gray-600 line-clamp-3">
+                <h3 className="text-xl font-semibold group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-500 group-hover:to-blue-500 group-hover:bg-clip-text transition-all duration-300">
+                  {project.title}
+                </h3>
+                
+                <p className={`text-sm line-clamp-3 ${
+                  darkMode ? 'text-gray-400' : 'text-gray-600'
+                }`}>
                   {project.description}
                 </p>
 
@@ -101,7 +235,11 @@ export default function Projects({ language, darkMode }: ProjectsProps) {
                   {project.tech.map((tech, techIndex) => (
                     <span
                       key={techIndex}
-                      className="px-3 py-1 text-xs rounded-full dark:bg-white/10 bg-gray-200 dark:text-gray-300 text-gray-700"
+                      className={`px-3 py-1 text-xs rounded-full transition-all hover:scale-110 ${
+                        darkMode 
+                          ? 'bg-white/10 text-gray-300 hover:bg-white/20' 
+                          : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                      }`}
                     >
                       {tech}
                     </span>
@@ -114,7 +252,11 @@ export default function Projects({ language, darkMode }: ProjectsProps) {
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg border dark:border-white/20 border-gray-300 hover:bg-white/10 transition-colors"
+                    className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg border transition-all hover:scale-105 ${
+                      darkMode 
+                        ? 'border-white/20 hover:bg-white/10' 
+                        : 'border-gray-300 hover:bg-gray-100'
+                    }`}
                   >
                     <Github className="w-4 h-4" />
                     <span className="text-sm">{t.projects.viewCode}</span>
@@ -123,27 +265,38 @@ export default function Projects({ language, darkMode }: ProjectsProps) {
                     href={project.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r ${project.gradient} hover:opacity-90 transition-opacity`}
+                    className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r ${project.gradient} hover:opacity-90 transition-all hover:scale-105 hover:shadow-lg`}
                   >
                     <ExternalLink className="w-4 h-4" />
                     <span className="text-sm">{t.projects.viewLive}</span>
                   </a>
                 </div>
               </div>
+
+              {/* Floating particles on hover */}
+              {hoveredProject === index && (
+                <>
+                  <div className="absolute top-4 left-4 w-2 h-2 bg-purple-500 rounded-full animate-float"></div>
+                  <div className="absolute bottom-4 right-4 w-2 h-2 bg-blue-500 rounded-full animate-float-delayed"></div>
+                </>
+              )}
             </div>
           ))}
         </div>
 
-        {/* GitHub Link */}
-        <div className="text-center mt-12">
+        {/* GitHub Link with animation */}
+        <div className={`text-center mt-12 ${
+          isVisible ? 'animate-fadeInUp delay-700' : 'opacity-0'
+        }`}>
           <a
             href="https://github.com/Orujova"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 hover:scale-105 transition-transform"
+            className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 hover:scale-105 transition-all hover:shadow-lg hover:shadow-purple-500/50 group"
           >
-            <Github className="w-5 h-5" />
+            <Github className="w-5 h-5 group-hover:rotate-12 transition-transform" />
             <span className="font-semibold">View More on GitHub</span>
+            <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </a>
         </div>
       </div>

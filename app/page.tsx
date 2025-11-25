@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
@@ -8,55 +8,49 @@ import Skills from '@/components/Skills';
 import Experience from '@/components/Experience';
 import Projects from '@/components/Projects';
 import Contact from '@/components/Contact';
+import AnimatedBackground from '@/components/AnimatedBackground';
 import { Language } from '@/lib/translations';
 
 export default function Home() {
   const [darkMode, setDarkMode] = useState(true);
   const [language, setLanguage] = useState<Language>('az');
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   return (
     <div className={darkMode ? 'dark' : ''}>
       <div className="min-h-screen transition-colors duration-500 dark:bg-[#0B0B0F] bg-white dark:text-white text-gray-900 relative overflow-hidden">
-        {/* Emergent.sh Style Animated Background - DARK MODE */}
-        {darkMode && (
-          <div className="fixed inset-0 overflow-hidden pointer-events-none">
-            {/* Large Animated Gradient Orbs */}
-            <div className="absolute -top-40 -left-40 w-[800px] h-[800px] bg-gradient-to-br from-violet-600/20 via-fuchsia-600/20 to-pink-600/20 rounded-full blur-3xl animate-blob"></div>
-            <div className="absolute top-1/4 -right-40 w-[900px] h-[900px] bg-gradient-to-br from-cyan-500/15 via-blue-600/15 to-indigo-600/15 rounded-full blur-3xl animate-blob animation-delay-2000"></div>
-            <div className="absolute -bottom-40 left-1/3 w-[700px] h-[700px] bg-gradient-to-br from-pink-600/20 via-purple-600/20 to-blue-600/20 rounded-full blur-3xl animate-blob animation-delay-4000"></div>
-            <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-gradient-to-br from-emerald-500/10 via-teal-500/10 to-cyan-500/10 rounded-full blur-3xl animate-blob animation-delay-6000"></div>
-            
-            {/* Subtle Grid Overlay */}
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000,transparent)]"></div>
-            
-            {/* Glowing Dots */}
-            <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-cyan-400/60 rounded-full blur-sm animate-pulse"></div>
-            <div className="absolute top-1/3 right-1/4 w-2 h-2 bg-fuchsia-400/60 rounded-full blur-sm animate-pulse animation-delay-1000"></div>
-            <div className="absolute bottom-1/4 left-1/3 w-3 h-3 bg-violet-400/60 rounded-full blur-sm animate-pulse animation-delay-2000"></div>
-            <div className="absolute top-2/3 right-1/3 w-2 h-2 bg-pink-400/60 rounded-full blur-sm animate-pulse animation-delay-3000"></div>
-            <div className="absolute bottom-1/3 right-1/4 w-3 h-3 bg-blue-400/60 rounded-full blur-sm animate-pulse animation-delay-4000"></div>
-          </div>
-        )}
+        {/* Animated Background */}
+        <AnimatedBackground darkMode={darkMode} />
 
-        {/* Light Mode Background */}
-        {!darkMode && (
-          <div className="fixed inset-0 overflow-hidden pointer-events-none">
-            {/* Soft Pastel Gradients for Light Mode */}
-            <div className="absolute -top-40 -left-40 w-[800px] h-[800px] bg-gradient-to-br from-violet-200/40 via-fuchsia-200/40 to-pink-200/40 rounded-full blur-3xl animate-blob"></div>
-            <div className="absolute top-1/4 -right-40 w-[900px] h-[900px] bg-gradient-to-br from-cyan-200/30 via-blue-200/30 to-indigo-200/30 rounded-full blur-3xl animate-blob animation-delay-2000"></div>
-            <div className="absolute -bottom-40 left-1/3 w-[700px] h-[700px] bg-gradient-to-br from-pink-200/40 via-purple-200/40 to-blue-200/40 rounded-full blur-3xl animate-blob animation-delay-4000"></div>
-            
-            {/* Light Grid */}
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,.03)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000,transparent)]"></div>
-            
-            {/* Subtle Dots */}
-            <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-violet-400/40 rounded-full blur-sm animate-pulse"></div>
-            <div className="absolute top-1/3 right-1/4 w-2 h-2 bg-cyan-400/40 rounded-full blur-sm animate-pulse animation-delay-1000"></div>
-            <div className="absolute bottom-1/4 left-1/3 w-2 h-2 bg-pink-400/40 rounded-full blur-sm animate-pulse animation-delay-2000"></div>
-          </div>
-        )}
+        {/* Mouse Follow Effect */}
+        <div 
+          className="fixed w-96 h-96 rounded-full pointer-events-none z-0 blur-3xl transition-all duration-300 ease-out"
+          style={{
+            left: `${mousePosition.x - 192}px`,
+            top: `${mousePosition.y - 192}px`,
+            background: darkMode 
+              ? 'radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%)'
+              : 'radial-gradient(circle, rgba(124, 58, 237, 0.1) 0%, transparent 70%)'
+          }}
+        />
 
-        {/* Content */}
+        {/* Floating Shapes */}
+        <div className="fixed inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl animate-float" />
+          <div className="absolute top-3/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-float-delayed" />
+          <div className="absolute bottom-1/4 left-1/2 w-80 h-80 bg-pink-500/10 rounded-full blur-3xl animate-float-slow" />
+        </div>
+
+        {/* Main Content */}
         <div className="relative z-10">
           <Header 
             darkMode={darkMode}
@@ -71,6 +65,17 @@ export default function Home() {
           <Projects language={language} darkMode={darkMode} />
           <Contact language={language} darkMode={darkMode} />
         </div>
+
+        {/* Scroll to Top Button */}
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 flex items-center justify-center hover:scale-110 transition-transform z-50 shadow-lg"
+          aria-label="Scroll to top"
+        >
+          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+          </svg>
+        </button>
       </div>
     </div>
   );
