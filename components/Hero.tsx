@@ -1,6 +1,6 @@
 'use client';
 
-import { Github, Linkedin, Mail, ChevronDown, Sparkles } from 'lucide-react';
+import { Github, Linkedin, Mail, ChevronDown, Code2, Rocket } from 'lucide-react';
 import { translations, Language } from '@/lib/translations';
 import { useState, useEffect } from 'react';
 
@@ -74,7 +74,7 @@ export default function Hero({ language, darkMode }: HeroProps) {
             <h2 className={`text-3xl sm:text-4xl font-semibold flex items-center gap-2 ${
               darkMode ? 'text-white' : 'text-gray-900'
             }`}>
-              <Sparkles className="w-8 h-8 text-purple-500 animate-pulse" />
+               <Code2 className="w-8 h-8 text-purple-500" />
               <span className="min-w-[300px] text-left">{typedText}</span>
               <span className="inline-block w-1 h-8 bg-purple-500 animate-pulse ml-1"></span>
             </h2>
@@ -99,7 +99,7 @@ export default function Hero({ language, darkMode }: HeroProps) {
           >
             <span className="relative z-10 flex items-center gap-2">
               {t.hero.cta}
-              <Sparkles className="w-4 h-4 group-hover:rotate-12 transition-transform" />
+              <Rocket className="w-4 h-4 group-hover:rotate-12 transition-transform" />
             </span>
             <div className="absolute inset-0 bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
           </button>

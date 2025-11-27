@@ -95,7 +95,7 @@ export const translations = {
       backend: 'Backend',
       tools: 'Tools & DevOps',
       description: 'Technologies and tools I use to build amazing projects',
-      learning: 'Always learning and exploring new technologies 🚀'
+      learning: 'Always learning and exploring new technologies '
     },
     experience: {
       title: 'Experience',

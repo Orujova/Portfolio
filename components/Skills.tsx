@@ -1,6 +1,6 @@
 'use client';
 
-import { Code, Palette, Zap, Star } from 'lucide-react';
+import { Code2, Database, Wrench } from 'lucide-react';
 import { translations, Language } from '@/lib/translations';
 import { useState, useEffect, useRef } from 'react';
 
@@ -34,57 +34,53 @@ export default function Skills({ language, darkMode }: SkillsProps) {
 
   const skillCategories = [
     {
-      icon: <Code className="w-8 h-8" />,
+      icon: Code2,
       title: t.skills.frontend,
-      color: 'from-purple-500 to-pink-500',
-      bgColor: darkMode ? 'from-purple-500/20 to-pink-500/20' : 'from-purple-500/10 to-pink-500/10',
+      color: 'from-purple-600 to-pink-600',
       skills: [
-        { name: 'HTML', level: 100, icon: '🎯' },
-        { name: 'CSS / Tailwind CSS', level: 100, icon: '🎨' },
-        { name: 'Bootstrap', level: 90, icon: '📱' },
-        { name: 'JavaScript', level: 85, icon: '⚡' },
-        { name: 'React JS', level: 90, icon: '⚛️' },
-        { name: 'Next JS', level: 85, icon: '▲' },
-        { name: 'TypeScript', level: 85, icon: '📘' },
-        { name: 'Redux Toolkit & Zustand', level: 85, icon: '🔄' },
-        { name: 'Material-UI & Styled Components', level: 85, icon: '💎' },
-        { name: 'React Hook Form', level: 80, icon: '📝' },
-        { name: 'Recharts & Data Visualization', level: 80, icon: '📊' },
-        { name: 'Responsive Design', level: 100, icon: '📱' }
+        'HTML',
+        'CSS / Tailwind CSS',
+        'Bootstrap',
+        'JavaScript',
+        'React JS',
+        'Next JS',
+        'TypeScript',
+        'Redux Toolkit & Zustand',
+        'Material-UI & Styled Components',
+        'React Hook Form',
+        'Recharts & Data Visualization',
+        'Responsive Design'
       ]
     },
     {
-      icon: <Zap className="w-8 h-8" />,
+      icon: Database,
       title: t.skills.backend,
-      color: 'from-blue-500 to-cyan-500',
-      bgColor: darkMode ? 'from-blue-500/20 to-cyan-500/20' : 'from-blue-500/10 to-cyan-500/10',
+      color: 'from-blue-600 to-cyan-600',
       skills: [
-      
-        { name: 'API Development', level: 85, icon: '🔌' },
-        { name: 'Azure Functions', level: 70, icon: '☁️' },
-        { name: 'Django REST Framework', level: 85, icon: '🎸' },
-        { name: 'PostgreSQL & DBeaver', level: 80, icon: '🗄️' },
-        { name: 'RESTful API Design', level: 85, icon: '🔌' },
-        { name: 'JWT & MSAL Authentication', level: 85, icon: '🔐' },
-        { name: 'Celery & Redis', level: 75, icon: '⚡' },
-        { name: 'Microsoft Graph API', level: 80, icon: '📧' },
-        { name: 'Node.js', level: 75, icon: '☁️' },
-        { name: 'Swagger/OpenAPI', level: 80, icon: '📚' }
+        'API Development',
+        'Azure Functions',
+        'Django REST Framework',
+        'PostgreSQL & DBeaver',
+        'RESTful API Design',
+        'JWT & MSAL Authentication',
+        'Celery & Redis',
+        'Microsoft Graph API',
+        'Node.js',
+        'Swagger/OpenAPI'
       ]
     },
     {
-      icon: <Palette className="w-8 h-8" />,
+      icon: Wrench,
       title: t.skills.tools,
-      color: 'from-orange-500 to-red-500',
-      bgColor: darkMode ? 'from-orange-500/20 to-red-500/20' : 'from-orange-500/10 to-red-500/10',
+      color: 'from-orange-600 to-red-600',
       skills: [
-        { name: 'Git & GitHub', level: 95, icon: '📦' },
-        { name: 'Docker & Containerization', level: 75, icon: '🐳' },
-        { name: 'Azure AD & Cloud Services', level: 80, icon: '☁️' },
-        { name: 'VS Code', level: 100, icon: '💻' },
-        { name: 'UI/UX Design', level: 75, icon: '🎨' },
-        { name: 'Working with Figma', level: 95, icon: '🎨' },
-        { name: 'CI/CD & Deployment', level: 70, icon: '🚀' }
+        'Git & GitHub',
+        'Docker & Containerization',
+        'Azure AD & Cloud Services',
+        'VS Code',
+        'UI/UX Design',
+        'Working with Figma',
+        'CI/CD & Deployment'
       ]
     }
   ];
@@ -95,113 +91,96 @@ export default function Skills({ language, darkMode }: SkillsProps) {
       id="skills" 
       className="min-h-screen flex items-center justify-center px-4 py-20"
     >
-      <div className="max-w-6xl mx-auto w-full">
+      <div className="max-w-7xl mx-auto w-full">
         <h2 className={`text-4xl sm:text-5xl font-bold text-center mb-4 ${
           isVisible ? 'animate-fadeInDown' : 'opacity-0'
-        } bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent`}>
+        } bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent`}>
           {t.skills.title}
         </h2>
         
-        <p className={`text-center mb-12 ${
+        <p className={`text-center mb-16 ${
           darkMode ? 'text-gray-400' : 'text-gray-600'
         } ${isVisible ? 'animate-fadeInUp delay-200' : 'opacity-0'}`}>
-          Technologies and tools I use to build amazing projects
+          {t.skills.description}
         </p>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {skillCategories.map((category, categoryIndex) => (
-            <div
-              key={categoryIndex}
-              onMouseEnter={() => setHoveredCategory(categoryIndex)}
-              onMouseLeave={() => setHoveredCategory(null)}
-              className={`group relative rounded-2xl p-6 backdrop-blur-sm border transition-all duration-500 card-hover ${
-                darkMode 
-                  ? 'bg-white/5 border-white/10 hover:bg-white/10' 
-                  : 'bg-gray-50 border-gray-200 hover:bg-gray-100'
-              } ${
-                isVisible ? 'animate-fadeInUp' : 'opacity-0'
-              } hover:scale-105 hover:shadow-2xl`}
-              style={{ 
-                animationDelay: `${categoryIndex * 200}ms`,
-                transformStyle: 'preserve-3d'
-              }}
-            >
-              {/* Animated gradient background */}
-              <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${category.bgColor} opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl`}></div>
-              
-              <div className="relative z-10">
-                {/* Icon with animation */}
-                <div className={`inline-flex p-3 rounded-xl bg-gradient-to-r ${category.color} mb-4 group-hover:scale-110 transition-transform duration-300 animate-pulse-scale`}>
-                  {category.icon}
-                </div>
+          {skillCategories.map((category, categoryIndex) => {
+            const Icon = category.icon;
+            return (
+              <div
+                key={categoryIndex}
+                onMouseEnter={() => setHoveredCategory(categoryIndex)}
+                onMouseLeave={() => setHoveredCategory(null)}
+                className={`group relative rounded-2xl p-8 backdrop-blur-sm border transition-all duration-500 ${
+                  darkMode 
+                    ? 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-purple-500/30' 
+                    : 'bg-white border-gray-200 hover:shadow-2xl hover:border-purple-500/30'
+                } ${
+                  isVisible ? 'animate-fadeInUp' : 'opacity-0'
+                } hover:scale-[1.02]`}
+                style={{ 
+                  animationDelay: `${categoryIndex * 200}ms`
+                }}
+              >
+                {/* Background gradient effect */}
+                <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
                 
-                <h3 className="text-2xl font-semibold mb-6 flex items-center gap-2">
-                  {category.title}
-                  {hoveredCategory === categoryIndex && (
-                    <Star className="w-5 h-5 text-yellow-500 animate-pulse" />
-                  )}
-                </h3>
-                
-                <div className="space-y-4">
-                  {category.skills.map((skill, skillIndex) => (
-                    <div 
-                      key={skillIndex} 
-                      className="space-y-2"
-                      style={{ animationDelay: `${(categoryIndex * 200) + (skillIndex * 100)}ms` }}
-                    >
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm font-medium flex items-center gap-2">
-                          <span className="group-hover:scale-125 transition-transform duration-300">
-                            {skill.icon}
-                          </span>
-                          {skill.name}
-                        </span>
-                        <span className={`text-xs ${
-                          darkMode ? 'text-gray-400' : 'text-gray-600'
-                        } font-semibold`}>
-                          {skill.level}%
-                        </span>
-                      </div>
-                      
-                      {/* Animated progress bar */}
-                      <div className={`relative w-full h-2 rounded-full overflow-hidden ${
-                        darkMode ? 'bg-white/10' : 'bg-gray-200'
-                      }`}>
-                        <div 
-                          className={`h-full bg-gradient-to-r ${category.color} rounded-full transition-all duration-1000 ease-out relative overflow-hidden`}
-                          style={{ 
-                            width: isVisible ? `${skill.level}%` : '0%',
-                            transitionDelay: `${(categoryIndex * 200) + (skillIndex * 100)}ms`
-                          }}
-                        >
-                          {/* Shimmer effect */}
-                          <div className="absolute inset-0 shimmer"></div>
-                        </div>
-                      </div>
+                <div className="relative z-10">
+                  {/* Icon Header */}
+                  <div className="flex items-center gap-4 mb-8">
+                    <div className={`p-4 rounded-xl bg-gradient-to-r ${category.color} group-hover:scale-110 transition-transform duration-300`}>
+                      <Icon className="w-7 h-7 text-white" />
                     </div>
-                  ))}
+                    <h3 className="text-2xl font-bold">{category.title}</h3>
+                  </div>
+                  
+                  {/* Skills List */}
+                  <div className="space-y-3">
+                    {category.skills.map((skill, skillIndex) => (
+                      <div 
+                        key={skillIndex} 
+                        className={`group/item flex items-center gap-3 py-2 px-3 rounded-lg transition-all duration-300 ${
+                          darkMode 
+                            ? 'hover:bg-white/5' 
+                            : 'hover:bg-gray-50'
+                        }`}
+                        style={{ animationDelay: `${(categoryIndex * 200) + (skillIndex * 50)}ms` }}
+                      >
+                        {/* Dot indicator */}
+                        <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${category.color} group-hover/item:scale-150 transition-transform duration-300`}></div>
+                        
+                        {/* Skill name */}
+                        <span className={`text-sm font-medium ${
+                          darkMode ? 'text-gray-300' : 'text-gray-700'
+                        } group-hover/item:text-purple-600 transition-colors duration-300`}>
+                          {skill}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
 
-              {/* Floating particles on hover */}
-              {hoveredCategory === categoryIndex && (
-                <>
-                  <div className="absolute top-2 right-2 w-2 h-2 bg-purple-500 rounded-full animate-float"></div>
-                  <div className="absolute bottom-2 left-2 w-2 h-2 bg-blue-500 rounded-full animate-float-delayed"></div>
-                  <div className="absolute top-1/2 left-2 w-2 h-2 bg-pink-500 rounded-full animate-float-slow"></div>
-                </>
-              )}
-            </div>
-          ))}
+                {/* Decorative corner accents */}
+                <div className={`absolute top-0 right-0 w-20 h-20 bg-gradient-to-br ${category.color} opacity-10 rounded-2xl blur-2xl group-hover:opacity-20 transition-opacity duration-500`}></div>
+                <div className={`absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr ${category.color} opacity-10 rounded-2xl blur-2xl group-hover:opacity-20 transition-opacity duration-500`}></div>
+              </div>
+            );
+          })}
         </div>
 
-        {/* Additional info section */}
-        <div className={`mt-12 text-center ${
+        {/* Bottom note */}
+        <div className={`mt-16 text-center ${
           isVisible ? 'animate-fadeInUp delay-700' : 'opacity-0'
         }`}>
-          <p className={`text-lg ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-            Always learning and exploring new technologies 🚀
-          </p>
+          <div className={`inline-flex items-center gap-2 px-6 py-3 rounded-full border ${
+            darkMode 
+              ? 'bg-purple-500/10 border-purple-500/30 text-purple-400' 
+              : 'bg-purple-50 border-purple-200 text-purple-600'
+          }`}>
+            <Code2 className="w-5 h-5" />
+            <span className="text-sm font-medium">{t.skills.learning}</span>
+          </div>
         </div>
       </div>
     </section>

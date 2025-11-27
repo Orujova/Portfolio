@@ -70,7 +70,7 @@ export default function Header({ darkMode, setDarkMode, language, setLanguage }:
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="group text-2xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent hover:scale-105 transition-all duration-300 flex items-center gap-2"
           >
-            <Sparkles className="w-6 h-6 text-purple-500 group-hover:rotate-180 transition-transform duration-500" />
+         
             <span className="animate-gradient bg-200%">Narmin.dev</span>
           </button>
 
@@ -163,19 +163,18 @@ export default function Header({ darkMode, setDarkMode, language, setLanguage }:
               </div>
             </div>
 
-            {/* Dark Mode Toggle with rotation animation */}
-            <button
+              <button
               onClick={() => setDarkMode(!darkMode)}
-              className={`p-2 rounded-lg transition-all hover:scale-110 hover:rotate-180 duration-500 ${
+              className={`p-2 rounded-lg transition-all hover:scale-105 duration-200 ${
                 darkMode 
                   ? 'bg-white/5 hover:bg-white/10 border border-white/10' 
                   : 'bg-gray-100 hover:bg-gray-200 border border-gray-200'
-              } backdrop-blur-sm`}
+              }`}
             >
               {darkMode ? (
-                <Sun className="w-5 h-5 text-yellow-400" />
+                <Sun className="w-5 h-5 text-yellow-500 transition-transform duration-200" />
               ) : (
-                <Moon className="w-5 h-5 text-indigo-600" />
+                <Moon className="w-5 h-5 text-indigo-600 transition-transform duration-200" />
               )}
             </button>
 
