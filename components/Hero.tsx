@@ -1,6 +1,6 @@
 'use client';
 
-import { Github, Linkedin, Mail, ChevronDown, Code2, Rocket } from 'lucide-react';
+import { Github, Linkedin, Mail, ChevronDown, Code2, Rocket,Download } from 'lucide-react';
 import { translations, Language } from '@/lib/translations';
 import { useState, useEffect } from 'react';
 
@@ -49,6 +49,15 @@ export default function Hero({ language, darkMode }: HeroProps) {
 
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+   const handleDownloadCV = () => {
+    const link = document.createElement('a');
+    link.href = 'Narmin.cv.pdf';
+    link.download = 'Narmin.cv.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -103,7 +112,7 @@ export default function Hero({ language, darkMode }: HeroProps) {
             </span>
             <div className="absolute inset-0 bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
           </button>
-          
+        
           <button
             onClick={() => scrollToSection('contact')}
             className={`px-8 py-3 rounded-full font-semibold border-2 backdrop-blur-sm transition-all hover:scale-105 ${
@@ -117,49 +126,70 @@ export default function Hero({ language, darkMode }: HeroProps) {
         </div>
 
         {/* Social links with stagger animation */}
-        <div className="flex justify-center gap-6 pt-8 animate-fadeInUp delay-1000" style={{ animationFillMode: 'both' }}>
-          <a 
-            href="https://github.com/Orujova" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className={`group p-3 rounded-full backdrop-blur-sm transition-all hover:scale-110 ${
+        {/* Social links and CV download */}
+        <div className="flex flex-col items-center gap-6 pt-8 animate-fadeInUp delay-1000" style={{ animationFillMode: 'both' }}>
+          {/* Social Links */}
+          <div className="flex gap-6">
+            <a 
+              href="https://github.com/Orujova" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className={`group p-3 rounded-full backdrop-blur-sm transition-all hover:scale-110 ${
+                darkMode 
+                  ? 'bg-white/5 hover:bg-white/10 border border-white/10 hover:border-cyan-400/50' 
+                  : 'bg-gray-100 hover:bg-gray-200 border border-gray-200 hover:border-violet-400'
+              }`}
+            >
+              <Github className={`w-6 h-6 transition-all group-hover:rotate-12 ${
+                darkMode ? 'group-hover:text-cyan-400' : 'group-hover:text-violet-600'
+              }`} />
+            </a>
+            
+            <a 
+              href="https://linkedin.com/in/narmin-orujova-0941b8256" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className={`group p-3 rounded-full backdrop-blur-sm transition-all hover:scale-110 ${
+                darkMode 
+                  ? 'bg-white/5 hover:bg-white/10 border border-white/10 hover:border-purple-400/50' 
+                  : 'bg-gray-100 hover:bg-gray-200 border border-gray-200 hover:border-fuchsia-400'
+              }`}
+            >
+              <Linkedin className={`w-6 h-6 transition-all group-hover:rotate-12 ${
+                darkMode ? 'group-hover:text-purple-400' : 'group-hover:text-fuchsia-600'
+              }`} />
+            </a>
+            
+            <a 
+              href="mailto:nermnorucova2004@gmail.com"
+              className={`group p-3 rounded-full backdrop-blur-sm transition-all hover:scale-110 ${
+                darkMode 
+                  ? 'bg-white/5 hover:bg-white/10 border border-white/10 hover:border-pink-400/50' 
+                  : 'bg-gray-100 hover:bg-gray-200 border border-gray-200 hover:border-pink-400'
+              }`}
+            >
+              <Mail className={`w-6 h-6 transition-all group-hover:rotate-12 ${
+                darkMode ? 'group-hover:text-pink-400' : 'group-hover:text-pink-600'
+              }`} />
+            </a>
+          </div>
+
+          {/* CV Download Button */}
+          {/* <button 
+            onClick={handleDownloadCV}
+            className={`group relative px-8 py-3 rounded-full backdrop-blur-sm transition-all hover:scale-110 border-2 ${
               darkMode 
-                ? 'bg-white/5 hover:bg-white/10 border border-white/10 hover:border-cyan-400/50' 
-                : 'bg-gray-100 hover:bg-gray-200 border border-gray-200 hover:border-violet-400'
-            }`}
+                ? 'bg-gradient-to-r from-purple-600/20 to-blue-600/20 border-purple-500/50 hover:border-purple-400' 
+                : 'bg-gradient-to-r from-purple-100 to-blue-100 border-purple-300 hover:border-purple-500'
+            } shadow-lg hover:shadow-purple-500/30`}
           >
-            <Github className={`w-6 h-6 transition-all group-hover:rotate-12 ${
-              darkMode ? 'group-hover:text-cyan-400' : 'group-hover:text-violet-600'
-            }`} />
-          </a>
-          
-          <a 
-            href="https://linkedin.com/in/narmin-orujova-0941b8256" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className={`group p-3 rounded-full backdrop-blur-sm transition-all hover:scale-110 ${
-              darkMode 
-                ? 'bg-white/5 hover:bg-white/10 border border-white/10 hover:border-purple-400/50' 
-                : 'bg-gray-100 hover:bg-gray-200 border border-gray-200 hover:border-fuchsia-400'
-            }`}
-          >
-            <Linkedin className={`w-6 h-6 transition-all group-hover:rotate-12 ${
-              darkMode ? 'group-hover:text-purple-400' : 'group-hover:text-fuchsia-600'
-            }`} />
-          </a>
-          
-          <a 
-            href="mailto:nermnorucova2004@gmail.com"
-            className={`group p-3 rounded-full backdrop-blur-sm transition-all hover:scale-110 ${
-              darkMode 
-                ? 'bg-white/5 hover:bg-white/10 border border-white/10 hover:border-pink-400/50' 
-                : 'bg-gray-100 hover:bg-gray-200 border border-gray-200 hover:border-pink-400'
-            }`}
-          >
-            <Mail className={`w-6 h-6 transition-all group-hover:rotate-12 ${
-              darkMode ? 'group-hover:text-pink-400' : 'group-hover:text-pink-600'
-            }`} />
-          </a>
+            <span className="flex items-center justify-center gap-2 font-semibold">
+              <Download className={`w-5 h-5 group-hover:animate-bounce ${
+                darkMode ? 'text-purple-400' : 'text-purple-600'
+              }`} />
+              Download CV
+            </span>
+          </button> */}
         </div>
 
         {/* Scroll indicator */}

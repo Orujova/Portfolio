@@ -82,6 +82,7 @@ export default function About({ language, darkMode }: AboutProps) {
         
 
           {/* Right Column - Content */}
+          {/* Right Column - Content */}
           <div className={`lg:col-span-8 space-y-8 ${isVisible ? 'animate-fadeInRight' : 'opacity-0'}`}>
             {/* Bio Section */}
             <div className={`rounded-2xl p-8 backdrop-blur-sm border ${
@@ -90,13 +91,28 @@ export default function About({ language, darkMode }: AboutProps) {
                 : 'bg-white border-gray-200 shadow-xl'
             }`}>
               <div className="space-y-5">
-                <div>
-              
-                  <p className={`text-base leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                  <p className={`text-base leading-relaxed flex-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                     {t.about.description}
                   </p>
+                  
+                  {/* CV Download Button */}
+                  <button 
+                    onClick={handleDownloadCV}
+                    className={`group relative px-6 py-3 rounded-xl backdrop-blur-sm transition-all hover:scale-105 border ${
+                      darkMode 
+                        ? 'bg-gradient-to-r from-purple-600/20 to-blue-600/20 border-purple-500/50 hover:border-purple-400' 
+                        : 'bg-gradient-to-r from-purple-100 to-blue-100 border-purple-300 hover:border-purple-500'
+                    } shadow-lg hover:shadow-purple-500/30 whitespace-nowrap self-start sm:self-center`}
+                  >
+                    <span className="flex items-center gap-2 font-semibold text-sm">
+                      <Download className={`w-4 h-4 group-hover:animate-bounce ${
+                        darkMode ? 'text-purple-400' : 'text-purple-600'
+                      }`} />
+                      Download CV
+                    </span>
+                  </button>
                 </div>
-
                 <div className={`p-5 rounded-xl border-l-4 border-purple-500 ${
                   darkMode ? 'bg-purple-500/10' : 'bg-purple-50'
                 }`}>
