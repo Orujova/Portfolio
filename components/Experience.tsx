@@ -44,6 +44,16 @@ export default function Experience({ language, darkMode }: ExperienceProps) {
       icon: '🚀',
       color: 'from-purple-500 to-pink-500'
     },
+      {
+      title: 'Junior IT Administrator',
+      company: 'Azərbaycan Supermarket MMC',
+      location: 'Baku, Azerbaijan',
+      period: '04/2025 - 05/2025',
+      type: 'work',
+      description: 'Managed IT infrastructure and provided technical support.',
+      icon: '⚙️',
+      color: 'from-green-500 to-emerald-500'
+    },
     {
       title: 'Human Resources Information System Assistant',
       company: 'Azərbaycan Supermarket MMC',
@@ -54,16 +64,7 @@ export default function Experience({ language, darkMode }: ExperienceProps) {
       icon: '💼',
       color: 'from-blue-500 to-cyan-500'
     },
-    {
-      title: 'Junior IT Administrator',
-      company: 'Azərbaycan Supermarket MMC',
-      location: 'Baku, Azerbaijan',
-      period: '04/2025 - 05/2025',
-      type: 'work',
-      description: 'Managed IT infrastructure and provided technical support.',
-      icon: '⚙️',
-      color: 'from-green-500 to-emerald-500'
-    },
+  
     {
       title: 'AI Coordinator',
       company: 'Uniting World Azerbaijani Youth',
@@ -88,7 +89,7 @@ export default function Experience({ language, darkMode }: ExperienceProps) {
 
   const education = [
     {
-      institution: 'French-Azerbaijani University',
+      institution: 'French-Azerbaijani University - UFAZ  (University of Strasbourg & ASOIU)',
       degree: 'Data Sciences and Artificial Intelligence',
       period: '09/2025 - Present',
       icon: '🎓',
@@ -99,7 +100,7 @@ export default function Experience({ language, darkMode }: ExperienceProps) {
       institution: 'Azerbaijan State Oil And Industrial University',
       degree: 'Information Security - Sabah Groups',
       period: '09/2021 - 06/2025',
-      score: 'Entrance score: 646.7',
+      score: 'Entrance score: 646.7   / GPA: 91.7',
       icon: '🎓',
       status: 'completed',
       color: 'from-blue-500 to-cyan-500'

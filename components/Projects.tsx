@@ -34,72 +34,122 @@ export default function Projects({ language, darkMode }: ProjectsProps) {
   }, []);
 
   const projects = [
+  {
+  title: 'HeaRead (Startup project)',
+  description: 'Award-winning accessibility platform converting speech to text in real-time. Features include transcript archive, user management, and multi-language support. 2nd place in Education Innovation Competition.',
+    image: '🎙️',
+  tech: ['React', 'Django',  'REST API', 'JWT', 'Speech Recognition'],
+  github: 'https://github.com/Orujova/React_Django_HeaRead',
+
+  gradient: 'from-indigo-500 to-purple-600',
+  category: 'fullstack',
+  featured: false
+},
+   {
+  title: 'EcoTrack - Carbon Footprint Tracker (Hackathon project)',
+  description: 'Comprehensive web application for tracking and analyzing personal carbon emissions across transportation, shopping, and lifestyle choices with interactive visualizations and community events.',
+  image: '🌍',
+  tech: ['Django', 'React', 'Google Maps API', 'Chart.js', 'Tailwind CSS', 'REST API', 'JWT'],
+  github: 'https://github.com/Orujova/Carbon_Footprint',
+
+  gradient: 'from-green-500 to-teal-500',
+  category: 'fullstack',
+  featured: false
+},
+ {
+  title: 'QR Generator',
+  description: 'Serverless QR code generator with branded templates and PDF export. Built with Azure Functions, generates professional planogram documentation with custom metadata and print-ready PDFs.',
+  image: '📱',
+  tech: ['Node.js', 'Azure Functions', 'Puppeteer', 'QRCode.js', 'HTML/CSS'],
+  github: 'https://github.com/Orujova/QR_Generator',
+
+  gradient: 'from-emerald-500 to-teal-600',
+  category: 'backend',
+  featured: false
+},
     {
-      title: 'E-Commerce Platform',
-      description: 'Full-stack e-commerce solution with payment integration, user authentication, and admin dashboard.',
-      image: '🛍️',
-      tech: ['Next.js', 'TypeScript', 'Tailwind CSS', 'PostgreSQL', 'Stripe'],
-      github: 'https://github.com/Orujova',
-      live: '#',
-      gradient: 'from-purple-500 to-pink-500',
-      category: 'fullstack',
-      featured: true
-    },
-    {
-      title: 'AI Task Management',
-      description: 'Real-time collaborative task management system with AI-powered suggestions and analytics.',
-      image: '🤖',
-      tech: ['React', 'Node.js', 'MongoDB', 'Socket.io', 'OpenAI API'],
-      github: 'https://github.com/Orujova',
-      live: '#',
-      gradient: 'from-blue-500 to-cyan-500',
-      category: 'fullstack',
-      featured: true
-    },
-    {
-      title: 'Portfolio Builder',
-      description: 'Drag-and-drop portfolio website builder with customizable templates and export functionality.',
-      image: '🎨',
-      tech: ['React', 'Redux', 'Tailwind CSS', 'Firebase'],
-      github: 'https://github.com/Orujova',
-      live: '#',
-      gradient: 'from-orange-500 to-red-500',
-      category: 'frontend',
-      featured: false
-    },
-    {
-      title: 'Social Media Dashboard',
-      description: 'Analytics dashboard for social media metrics with real-time data visualization and reports.',
-      image: '📊',
-      tech: ['Next.js', 'TypeScript', 'Chart.js', 'API Integration'],
-      github: 'https://github.com/Orujova',
-      live: '#',
-      gradient: 'from-green-500 to-emerald-500',
-      category: 'frontend',
-      featured: false
-    },
-    {
-      title: 'Weather Forecast App',
-      description: 'Beautiful weather application with 7-day forecast, location search, and weather alerts.',
-      image: '🌤️',
-      tech: ['React', 'TypeScript', 'OpenWeather API', 'Tailwind CSS'],
-      github: 'https://github.com/Orujova',
-      live: '#',
-      gradient: 'from-sky-500 to-blue-500',
-      category: 'frontend',
-      featured: false
-    },
-    {
-      title: 'Blog Platform',
-      description: 'Modern blogging platform with markdown support, comments, and user authentication.',
-      image: '📝',
-      tech: ['Next.js', 'Django', 'PostgreSQL', 'AWS S3'],
-      github: 'https://github.com/Orujova',
-      live: '#',
-      gradient: 'from-violet-500 to-purple-500',
-      category: 'fullstack',
-      featured: false
-    }
+  title: 'HR Uniform Management System',
+  description: 'Enterprise-level uniform distribution and inventory management system for Almet Holding with multi-tenant architecture, 3-tier approval workflows, and real-time stock tracking across multiple projects.',
+  image: '👔',
+  tech: ['React.js', 'Redux', 'Styled Components', 'Material-UI'],
+  github: 'https://github.com/Orujova/Uniform-app',
+
+  gradient: 'from-blue-500 to-cyan-500',
+  category: 'frontend',
+  featured: false
+},
+   {
+  title: 'ER Request Management System',
+  description: 'Enterprise HR case management platform with real-time chat, integrated email client, rich document handling, and role-based workflows for employee relations tracking.',
+  image: '🏢',
+  tech: ['React', 'Redux Toolkit', 'Azure AD', 'TipTap Editor', 'Microsoft Graph API', 'Tailwind CSS'],
+  github: 'https://github.com/Orujova/ER_Request',
+
+  gradient: 'from-cyan-500 to-blue-600',
+  category: 'frontend',
+  featured: false
+},{
+  title: 'UPLMS - Corporate Learning Platform (Startup project)',
+  description: 'Full-featured enterprise LMS with modular architecture: Dashboard with analytics, Course & Cluster management, Training scheduler, Communications hub (News, Announcements, Events), Data Collection surveys, Push Notifications, Internal Vacancies, User & Target Group management, and comprehensive Settings with branding customization.',
+  image: '🎓',
+  tech: ['Next.js', 'React', 'Redux Toolkit', 'TailwindCSS', 'EditorJS'],
+  github: 'https://github.com/Orujova/UP_Lms',
+
+  gradient: 'from-teal-400 via-cyan-500 to-emerald-600',
+  category: 'fullstack',
+  featured: true
+}
+
+,{
+  title: ' HRIS - Enterprise HR Management System',
+  description: 'Full-stack HRIS platform managing  employees with performance reviews, competency assessments, job descriptions, asset management, training programs, leave management, and organizational charts. Features Microsoft SSO, automated workflows, role-based permissions, and real-time dashboards.',
+  image: '🏢',
+  tech: [
+    'Django REST Framework',
+    'Dbeaver',
+    'PostgreSQL',
+    'Celery',
+    'Redis',
+    'Microsoft Graph API',
+    'MSAL (Microsoft Authentication)',
+    'JWT Authentication',
+    'Django ORM',
+    'Swagger/OpenAPI',
+    'Docker',
+    'DRF Spectacular',
+    'Openpyxl (Excel Export)',
+    'Django Signals',
+    'Custom Middleware',
+    'Django Cache Framework'
+  ],
+  github: 'https://github.com/Orujova',
+  gradient: 'from-blue-600 to-indigo-600',
+  category: 'backend',
+  featured: true
+},
+{
+  title: 'Enterprise HRIS & Performance Management Platform',
+  description: 'Comprehensive HR management system with employee performance tracking, training modules, vacation management, business trip approvals, organizational charts, and real-time analytics dashboard.',
+  image: '👥',
+  tech: [
+    'Next.js 14', 
+    'React 18', 
+    'Tailwind CSS',
+    'Recharts',
+    'React Flow',
+    'MSAL (Microsoft Auth)',
+    'Azure AD Integration',
+    'Microsoft Graph API',
+    'React Hook Form',
+    'Zustand/Context API',
+    'Dagre (Graph Layout)',
+  ],
+  github: 'https://github.com/Orujova/Almet_HRIS_front',
+
+  gradient: 'from-blue-600 to-indigo-600',
+  category: 'frontend',
+  featured: true
+}
   ];
 
   const filters = [
@@ -205,15 +255,7 @@ export default function Projects({ language, darkMode }: ProjectsProps) {
                     >
                       <Github className="w-5 h-5" />
                     </a>
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all hover:scale-110"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <Eye className="w-5 h-5" />
-                    </a>
+                   
                   </div>
                 )}
               </div>
@@ -261,7 +303,7 @@ export default function Projects({ language, darkMode }: ProjectsProps) {
                     <Github className="w-4 h-4" />
                     <span className="text-sm">{t.projects.viewCode}</span>
                   </a>
-                  <a
+                  {/* <a
                     href={project.live}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -269,7 +311,7 @@ export default function Projects({ language, darkMode }: ProjectsProps) {
                   >
                     <ExternalLink className="w-4 h-4" />
                     <span className="text-sm">{t.projects.viewLive}</span>
-                  </a>
+                  </a> */}
                 </div>
               </div>
 

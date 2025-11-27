@@ -39,14 +39,18 @@ export default function Skills({ language, darkMode }: SkillsProps) {
       color: 'from-purple-500 to-pink-500',
       bgColor: darkMode ? 'from-purple-500/20 to-pink-500/20' : 'from-purple-500/10 to-pink-500/10',
       skills: [
-        { name: 'HTML', level: 95, icon: '🎯' },
-        { name: 'CSS / Tailwind CSS', level: 90, icon: '🎨' },
-        { name: 'JavaScript / TypeScript', level: 85, icon: '⚡' },
+        { name: 'HTML', level: 100, icon: '🎯' },
+        { name: 'CSS / Tailwind CSS', level: 100, icon: '🎨' },
+        { name: 'Bootstrap', level: 90, icon: '📱' },
+        { name: 'JavaScript', level: 85, icon: '⚡' },
         { name: 'React JS', level: 90, icon: '⚛️' },
-        { name: 'Redux', level: 80, icon: '🔄' },
         { name: 'Next JS', level: 85, icon: '▲' },
-        { name: 'Bootstrap', level: 85, icon: '📱' },
-        { name: 'Responsive Design', level: 90, icon: '📐' }
+        { name: 'TypeScript', level: 85, icon: '📘' },
+        { name: 'Redux Toolkit & Zustand', level: 85, icon: '🔄' },
+        { name: 'Material-UI & Styled Components', level: 85, icon: '💎' },
+        { name: 'React Hook Form', level: 80, icon: '📝' },
+        { name: 'Recharts & Data Visualization', level: 80, icon: '📊' },
+        { name: 'Responsive Design', level: 100, icon: '📱' }
       ]
     },
     {
@@ -55,10 +59,17 @@ export default function Skills({ language, darkMode }: SkillsProps) {
       color: 'from-blue-500 to-cyan-500',
       bgColor: darkMode ? 'from-blue-500/20 to-cyan-500/20' : 'from-blue-500/10 to-cyan-500/10',
       skills: [
-        { name: 'Python', level: 80, icon: '🐍' },
-        { name: 'Django', level: 75, icon: '🎸' },
+      
         { name: 'API Development', level: 85, icon: '🔌' },
-        { name: 'Azure', level: 70, icon: '☁️' }
+        { name: 'Azure Functions', level: 70, icon: '☁️' },
+        { name: 'Django REST Framework', level: 85, icon: '🎸' },
+        { name: 'PostgreSQL & DBeaver', level: 80, icon: '🗄️' },
+        { name: 'RESTful API Design', level: 85, icon: '🔌' },
+        { name: 'JWT & MSAL Authentication', level: 85, icon: '🔐' },
+        { name: 'Celery & Redis', level: 75, icon: '⚡' },
+        { name: 'Microsoft Graph API', level: 80, icon: '📧' },
+        { name: 'Node.js', level: 75, icon: '☁️' },
+        { name: 'Swagger/OpenAPI', level: 80, icon: '📚' }
       ]
     },
     {
@@ -67,10 +78,13 @@ export default function Skills({ language, darkMode }: SkillsProps) {
       color: 'from-orange-500 to-red-500',
       bgColor: darkMode ? 'from-orange-500/20 to-red-500/20' : 'from-orange-500/10 to-red-500/10',
       skills: [
-        { name: 'Git & Github', level: 90, icon: '📦' },
-        { name: 'VS Code', level: 95, icon: '💻' },
-        { name: 'Figma', level: 75, icon: '🎨' },
-        { name: 'Docker', level: 65, icon: '🐳' }
+        { name: 'Git & GitHub', level: 95, icon: '📦' },
+        { name: 'Docker & Containerization', level: 75, icon: '🐳' },
+        { name: 'Azure AD & Cloud Services', level: 80, icon: '☁️' },
+        { name: 'VS Code', level: 100, icon: '💻' },
+        { name: 'UI/UX Design', level: 75, icon: '🎨' },
+        { name: 'Working with Figma', level: 95, icon: '🎨' },
+        { name: 'CI/CD & Deployment', level: 70, icon: '🚀' }
       ]
     }
   ];

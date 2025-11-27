@@ -199,7 +199,7 @@ export default function Contact({ language, darkMode }: ContactProps) {
             </div>
 
             {/* Fun Stats */}
-            <div className={`mt-8 p-6 rounded-xl border ${
+            {/* <div className={`mt-8 p-6 rounded-xl border ${
               darkMode 
                 ? 'bg-gradient-to-br from-purple-500/10 to-blue-500/10 border-purple-500/30' 
                 : 'bg-gradient-to-br from-purple-100 to-blue-100 border-purple-300'
@@ -230,7 +230,7 @@ export default function Contact({ language, darkMode }: ContactProps) {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Contact Form */}

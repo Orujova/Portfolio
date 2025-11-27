@@ -134,7 +134,7 @@ export default function Header({ darkMode, setDarkMode, language, setLanguage }:
                       : ''
                   }`}
                 >
-                  🇦🇿 Azərbaycan
+                  Azərbaycan
                 </button>
                 <button
                   onClick={() => setLanguage('en')}
@@ -146,7 +146,7 @@ export default function Header({ darkMode, setDarkMode, language, setLanguage }:
                       : ''
                   }`}
                 >
-                  🇬🇧 English
+                  English
                 </button>
                 <button
                   onClick={() => setLanguage('ru')}
@@ -158,7 +158,7 @@ export default function Header({ darkMode, setDarkMode, language, setLanguage }:
                       : ''
                   }`}
                 >
-                  🇷🇺 Русский
+                  Русский
                 </button>
               </div>
             </div>
