@@ -91,7 +91,7 @@ export default function Projects({ language, darkMode }: ProjectsProps) {
       tech: ['Next.js', 'React', 'Redux Toolkit', 'TailwindCSS', 'EditorJS'],
       github: 'https://github.com/Orujova/UP_Lms',
       gradient: 'from-teal-400 via-cyan-500 to-emerald-600',
-      category: 'fullstack',
+      category: 'frontend',
       featured: true
     },
     {
@@ -120,7 +120,8 @@ export default function Projects({ language, darkMode }: ProjectsProps) {
     { id: 'all', label: 'All Projects', icon: Layers },
     { id: 'featured', label: 'Featured', icon: Star },
     { id: 'fullstack', label: 'Full Stack', icon: Code2 },
-    { id: 'frontend', label: 'Frontend', icon: Rocket }
+    { id: 'frontend', label: 'Frontend', icon: Rocket },
+        { id: 'backend', label: 'Backend', icon: Code2 },
   ];
 
   const filteredProjects = projects.filter(project => {
