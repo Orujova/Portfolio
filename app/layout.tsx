@@ -9,9 +9,6 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Narmin Orujova",
-  icons: {
-    icon: "/favicon.ico",
-  },
   description: "Full Stack Developer specializing in React, Next.js, TypeScript, and AI solutions. Portfolio showcasing web development projects and experience.",
   keywords: ["Full Stack Developer", "React", "Next.js", "TypeScript", "Web Developer", "AI Developer", "Narmin Orujova"],
   authors: [{ name: "Narmin Orujova" }],
